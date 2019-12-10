@@ -1,5 +1,5 @@
 const gulp = require('gulp');
-const {archiver, cleanCss, concat, htmlReplace, htmlmin, imagemin, rename, sass, sourcemaps, uglifyEs} = require('gulp-load-plugins')({
+const {cleanCss, concat, htmlReplace, htmlmin, imagemin, rename, sass, sourcemaps, uglifyEs, zip} = require('gulp-load-plugins')({
     postRequireTransforms: {
         uglifyEs: function (uglifyEs) {
             return uglifyEs.default;
@@ -117,6 +117,6 @@ gulp.task('serve', gulp.series('default', function () {
 
 gulp.task('zip', gulp.series('default', () => {
     return gulp.src('dist/**/*', '!dist/build.zip')
-        .pipe(archiver('build.zip'))
+        .pipe(zip('build.zip'))
         .pipe(gulp.dest('dist'))
 }));
